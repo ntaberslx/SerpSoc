@@ -4,7 +4,7 @@ class Stat {
   name: string;
   value: number;
 
-  constructor(name: string, value: number){
+  constructor(name: string, value: number) {
     this.name = name;
     this.value = value;
   }
@@ -112,8 +112,6 @@ export class AppComponent implements OnInit {
         stats.push(player.stats.pop());
       }
     }
-    console.log(stats.length);
-    console.log(this.playerArray[0].stats.length);
     stats.sort(function(a, b) { return a - b; } );
     let iterator = 1;
     let current = 0;
