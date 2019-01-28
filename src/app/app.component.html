@@ -19,8 +19,7 @@
         <input #n_stats type="number" [defaultValue]="6" (change)="setStats(n_stats.value)" ngModel>
       </div>
       <div class="col-md-4">
-        Auto Roll Stats using an RNG?
-        <input #auto_roll type="checkbox" [defaultValue]="false" (change)="setAutoRoll(auto_roll.value)" ngModel disabled>
+        <input type="button" (click)="roll()" value="Roll Stats (4d6 drop lowest)">
       </div>
     </div>
 

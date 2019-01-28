@@ -61,7 +61,6 @@ export class AppComponent implements OnInit {
   title = 'Serpentine Socialism TTRPG Stat Distributor';
   private n_players: number;
   private n_stats: number;
-  private auto_roll: boolean;
   public playerArray;
   public trashBin;
 
@@ -73,10 +72,6 @@ export class AppComponent implements OnInit {
   setStats(n_stats) {
     this.n_stats = n_stats;
     this.buildArray();
-  }
-
-  setAutoRoll(auto_roll) {
-    this.auto_roll = auto_roll;
   }
 
   buildArray() {
@@ -106,13 +101,14 @@ export class AppComponent implements OnInit {
   }
 
   distribute() {
-    const stats = [];
+    let stats = [];
     for (const player of this.playerArray) {
       for (let i = 0; i < this.n_stats; i++) {
         stats.push(player.stats.pop());
       }
     }
-    stats.sort(function(a, b) { return a - b; } );
+    stats = stats.sort(function(a, b) { return a.value - b.value; } );
+
     let iterator = 1;
     let current = 0;
     let turns = 0;
@@ -142,12 +138,33 @@ export class AppComponent implements OnInit {
     }
   }
 
+  roll() {
+    for (const player of this.playerArray) {
+      for (let i = 0; i < this.n_stats; i++) {
+        player.stats[i].setValue(this.FourDSixDropLowest());
+      }
+    }
+  }
+
+  FourDSixDropLowest(): number {
+    let results = [];
+    for (let i = 0; i < 4; i++) {
+      results.push(this.getRndInteger(1, 6));
+    }
+    results = results.sort(function(a, b) { return a - b; } );
+    results.shift();
+    return results[0] + results[1] + results[2];
+  }
+
+  getRndInteger(min, max): number {
+    return Math.floor(Math.random() * (max - min + 1) ) + min;
+  }
+
   ngOnInit(): void {
     this.playerArray = [];
     this.trashBin = [];
     this.n_players = 4;
     this.n_stats = 6;
-    this.auto_roll = false;
     this.buildArray();
   }
 }
