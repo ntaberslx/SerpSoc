@@ -46,6 +46,12 @@ class Player {
     this.stats = [];
   }
 
+  public itemizeStats() {
+    for (let i = 0; i < this.stats.length; i++) {
+      this.stats[i].name = 'Stat ' + (i + 1);
+    }
+  }
+
   setName(name: string) {
     this.name = name;
   }
@@ -135,6 +141,13 @@ export class AppComponent implements OnInit {
           iterator = -1;
         }
       }
+    }
+  }
+
+  randomizeStats() {
+    for (const player of this.playerArray) {
+      player.stats.sort(function(a, b) { return 0.5 - Math.random(); });
+      player.itemizeStats();
     }
   }
 
