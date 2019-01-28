@@ -1,50 +1,57 @@
-<div class="center">
+<div class="jumbotron text-center">
   <h1>
     {{ title }}
   </h1>
-  <hr/>
 </div>
 
 <!-- Input Choices -->
+<div class="section">
+  <div class="container padded">
 
-<div class="container">
-  <form>
     <div class="row">
       <div class="col-md-4">
         Number of Players:
-        <input #n_players type="number" [defaultValue]="4" (change)="setPlayers(n_players.value)" ngModel>
+        <input class="form-control" #n_players type="number" [defaultValue]="4" (change)="setPlayers(n_players.value)" ngModel>
       </div>
       <div class="col-md-4">
         Number of Stats:
-        <input #n_stats type="number" [defaultValue]="6" (change)="setStats(n_stats.value)" ngModel>
+        <input class="form-control" #n_stats type="number" [defaultValue]="6" (change)="setStats(n_stats.value)" ngModel>
       </div>
       <div class="col-md-4">
-        <input type="button" (click)="roll()" value="Roll Stats (4d6 drop lowest)">
+        Roll Automatically using 4d6 drop lowest:
+        <button type="button" class="btn btn-dark" (click)="roll()">Roll Stats</button>
       </div>
     </div>
+  </div>
 
-    <div class="row" id="inputs">
-      <div class="col-md-2" *ngFor="let player of playerArray">
-        <div class="panel panel-default">
+  <div class="container padded">
+    <div class="row">
+      <div class="col-md-2 statBloc" *ngFor="let player of playerArray">
+        <div class="panel panel-primary card statBloc innerStatBloc">
           <div class="panel-heading">
             <h3 class="panel-title">
-              <input #playerName [value]="player.name" (change)="player.setName(playerName.value)" ngModel>
+              <input class="form-control" #playerName [value]="player.name" (change)="player.setName(playerName.value)" ngModel>
             </h3>
           </div>
           <div class="panel-body">
             <div class="stat" *ngFor="let stat of player.stats">
               <label> {{stat.name}}
-                <input #statVal [value]="stat.value" (change)="stat.setValue(statVal.value)" ngModel>
+                <input class="form-control" #statVal [value]="stat.value" (change)="stat.setValue(statVal.value)" ngModel>
               </label>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-    <div class="center">
-      <input type="button" (click)="distribute()" value="Distribute Stats">
-      <input type="button" (click)="randomizeStats()" value="Shuffle Player Stats">
+  </div>
+  <div class="container padded">
+    <div class="row">
+      <div class="col-md-6 center">
+        <button type="button" class="btn btn-primary" (click)="distribute()">Distribute Stats</button>
+      </div>
+      <div class="col-md-6 center">
+        <button type="button" class="btn btn-primary" (click)="randomizeStats()">Shuffle Player Stats</button>
+      </div>
     </div>
-  </form>
+  </div>
 </div>

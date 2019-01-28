@@ -1,6 +1,14 @@
 .center{
   text-align: center;
 }
-.stat{
-
+.padded{
+  padding-top: 2rem;
+}
+.statBloc{
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.5rem;
+}
+.innerStatBloc{
+  background-color: #D3D3D3;
 }
