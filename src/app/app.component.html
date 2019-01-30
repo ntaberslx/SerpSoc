@@ -1,4 +1,4 @@
-<div class="jumbotron text-center">
+<div class="jumbotron text-center jumbotronBG">
   <h1>
     {{ title }}
   </h1>
@@ -26,8 +26,8 @@
 
   <div class="container padded">
     <div class="row">
-      <div class="col-md-2 statBloc" *ngFor="let player of playerArray">
-        <div class="panel panel-primary card statBloc innerStatBloc">
+      <div class="col-md-2 statBloc" *ngFor="let player of playerArray; let i = index;">
+        <div class="panel panel-primary card statBloc" [ngStyle]="getColor(i)">
           <div class="panel-heading">
             <h3 class="panel-title">
               <input class="form-control" #playerName [value]="player.name" (change)="player.setName(playerName.value)" ngModel>
@@ -46,11 +46,11 @@
   </div>
   <div class="container padded">
     <div class="row">
-      <div class="col-md-6 center">
-        <button type="button" class="btn btn-primary" (click)="distribute()">Distribute Stats</button>
+      <div class="col-md-6 text-center">
+        <button type="button" class="btn btn-secondary" (click)="distribute()">Distribute Stats</button>
       </div>
-      <div class="col-md-6 center">
-        <button type="button" class="btn btn-primary" (click)="randomizeStats()">Shuffle Player Stats</button>
+      <div class="col-md-6 text-center">
+        <button type="button" class="btn btn-secondary" (click)="randomizeStats()">Shuffle Player Stats</button>
       </div>
     </div>
   </div>

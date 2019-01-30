@@ -69,6 +69,9 @@ export class AppComponent implements OnInit {
   private n_stats: number;
   public playerArray;
   public trashBin;
+  public colorScheme = [
+    '#7a6c5d', '#E6C79C', '#ddc9b4', '#bcac9b', '#c17c74'
+  ];
 
   setPlayers(n_players) {
     this.n_players = n_players;
@@ -167,6 +170,12 @@ export class AppComponent implements OnInit {
     results = results.sort(function(a, b) { return a - b; } );
     results.shift();
     return results[0] + results[1] + results[2];
+  }
+
+  getColor(i) {
+    return {
+      'background-color': this.colorScheme[i % this.colorScheme.length]
+    };
   }
 
   getRndInteger(min, max): number {
