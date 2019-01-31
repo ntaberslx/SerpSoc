@@ -66,8 +66,8 @@ class Player {
 
 export class AppComponent implements OnInit {
   title = 'Serpentine Socialism TTRPG Stat Distributor';
-  private n_players: number;
-  private n_stats: number;
+  public n_players: number;
+  public n_stats: number;
   public playerArray;
   public trashBin;
   public colorScheme = [
