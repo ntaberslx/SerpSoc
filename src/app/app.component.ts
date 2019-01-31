@@ -1,4 +1,5 @@
 import { Component, OnInit  } from '@angular/core';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 class Stat {
   name: string;
@@ -72,6 +73,61 @@ export class AppComponent implements OnInit {
   public colorScheme = [
     '#7a6c5d', '#E6C79C', '#ddc9b4', '#bcac9b', '#c17c74'
   ];
+  public statData = {};
+  public barChartOptions = {
+    scaleShowVerticalLines: false,
+    responsive: true
+  };
+  public barChartData;
+  public barChartLabels = [
+    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
+    '11', '12', '13', '14', '15', '16', '17', '18', '19', '20'
+  ];
+  public barChartType = 'bar';
+  public barChartLegend = false;
+
+  constructor(private modalService: NgbModal) {}
+  showStatModal(content): void {
+    let data = [];
+    for (const player of this.playerArray) {
+      for (const stat of player.stats){
+        data.push(stat.value);
+      }
+    }
+    data = data.sort(function(a, b) { return a - b; } );
+    this.statData = this.getStatData(data);
+    this.barChartData = this.getBarChartData(data);
+    this.modalService.open(content, { centered: true });
+  }
+
+  getBarChartData(data) {
+    const histogram = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    for (const it of data) {
+      histogram[it] ++;
+    }
+    return JSON.parse(JSON.stringify(histogram));
+  }
+
+  getStatData(data) {
+    return {
+      mean : Math.floor(this.getMean(data)),
+      std : Math.round(this.getSD(data) * 100) / 100
+    };
+  }
+
+  getMean(data) {
+    return data.reduce(function (a, b) {
+      return Number(a) + Number(b);
+    }) / data.length;
+  }
+
+  // Standard deviation
+  getSD(data) {
+    const m = this.getMean(data);
+    return Math.sqrt(data.reduce(function (sq, n) {
+      return sq + Math.pow(n - m, 2);
+    }, 0) / (data.length - 1));
+  }
 
   setPlayers(n_players) {
     this.n_players = n_players;

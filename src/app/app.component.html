@@ -4,6 +4,33 @@
   </h1>
 </div>
 
+<ng-template #statsModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Deep Dive Statistics</h4>
+  </div>
+    <div class="modal-body">
+      <div class="row">
+        <canvas baseChart
+                [data]="barChartData"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [legend]="barChartLegend"
+                [chartType]="barChartType"></canvas>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          Arithmetic Mean: {{statData.mean}}
+        </div>
+        <div class="col-md-6">
+          Standard Deviation: {{statData.std}}
+        </div>
+      </div>
+    </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Cancel</button>
+  </div>
+</ng-template>
+
 <!-- Input Choices -->
 <div class="section">
   <div class="container padded">
@@ -46,11 +73,14 @@
   </div>
   <div class="container">
     <div class="row">
-      <div class="col-md-6 text-center padded">
+      <div class="col-md-4 text-center padded">
         <button type="button" class="btn btn-secondary btn-block tall" (click)="distribute()">Distribute Stats</button>
       </div>
-      <div class="col-md-6 text-center padded">
+      <div class="col-md-4 text-center padded">
         <button type="button" class="btn btn-secondary btn-block" (click)="randomizeStats()">Shuffle Player Stats</button>
+      </div>
+      <div class="col-md-4 text-center padded">
+        <button type="button" class="btn btn-secondary btn-block" (click)="showStatModal(statsModal)">Stats Stats</button>
       </div>
     </div>
   </div>
