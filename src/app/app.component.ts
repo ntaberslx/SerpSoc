@@ -221,7 +221,7 @@ export class AppComponent implements OnInit {
   FourDSixDropLowest(): number {
     let results = [];
     for (let i = 0; i < 4; i++) {
-      results.push(this.getRndInteger(1, 6));
+      results.push(this.getRngInteger(1, 6));
     }
     results = results.sort(function(a, b) { return a - b; } );
     results.shift();
@@ -234,7 +234,7 @@ export class AppComponent implements OnInit {
     };
   }
 
-  getRndInteger(min, max): number {
+  getRngInteger(min, max): number {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
   }
 
