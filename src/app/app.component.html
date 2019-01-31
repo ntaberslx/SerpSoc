@@ -38,11 +38,31 @@
     <div class="row">
       <div class="col-md-4">
         Number of Players:
-        <input class="form-control" #n_players type="number" [defaultValue]="4" (change)="setPlayers(n_players.value)" ngModel>
+        <div class="input-group mb-3">
+          <span class="input-group-btn">
+            <button class="btn btn-outline-secondary input-group-btn" (click)="n_players = (n_players - 1); setPlayers(n_players);"><i class="fas fa-minus"></i></button>
+          </span>
+          <label>
+            <input class="form-control disabledSpecial" value="{{n_players}}" [defaultValue]="4" (change)="setPlayers(n_players)" ngModel="n_players">
+          </label>
+          <span class="input-group-btn">
+              <button class="btn btn-outline-secondary input-group-btn" (click)="n_players = (n_players + 1); setPlayers(n_players);"><i class="fas fa-plus"></i></button>
+          </span>
+        </div>
       </div>
       <div class="col-md-4">
         Number of Stats:
-        <input class="form-control" #n_stats type="number" [defaultValue]="6" (change)="setStats(n_stats.value)" ngModel>
+        <div class="input-group mb-3">
+          <span class="input-group-btn">
+            <button class="btn btn-outline-secondary input-group-btn" (click)="n_stats = (n_stats - 1); setStats(n_stats);"><i class="fas fa-minus"></i></button>
+          </span>
+          <label>
+            <input class="form-control" [defaultValue]="6" (keyup)="setStats(n_stats)" ngModel="n_stats" [disabled]="true">
+          </label>
+          <span class="input-group-btn">
+              <button class="btn btn-outline-secondary input-group-btn" (click)="n_stats = (n_stats + 1); setStats(n_stats);"><i class="fas fa-plus"></i></button>
+          </span>
+        </div>
       </div>
       <div class="col-md-4">
         Roll Automatically using 4d6 drop lowest:
