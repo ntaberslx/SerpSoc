@@ -9,3 +9,7 @@
 .jumbotronBG{
   background-color: #c17c74;
 }
+.padSides {
+  padding-left : 0.5rem;
+  padding-right : 0.5rem;
+}

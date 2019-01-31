@@ -37,36 +37,46 @@
 
     <div class="row">
       <div class="col-md-4">
-        Number of Players:
-        <div class="input-group mb-3">
+        <div class="row">
+          <div class="col-md-4">
+            <h2>Players:</h2>
+          </div>
+          <div class="col-md-8 input-group mb-1">
           <span class="input-group-btn">
             <button class="btn btn-outline-secondary input-group-btn" (click)="n_players = (n_players - 1); setPlayers(n_players);"><i class="fas fa-minus"></i></button>
           </span>
-          <label>
-            <input class="form-control disabledSpecial" value="{{n_players}}" [defaultValue]="4" (change)="setPlayers(n_players)" ngModel="n_players">
-          </label>
-          <span class="input-group-btn">
-              <button class="btn btn-outline-secondary input-group-btn" (click)="n_players = (n_players + 1); setPlayers(n_players);"><i class="fas fa-plus"></i></button>
+            <h3 class="padSides">{{n_players}}</h3>
+            <span class="input-group-btn">
+            <button class="btn btn-outline-secondary input-group-btn" (click)="n_players = (n_players + 1); setPlayers(n_players);"><i class="fas fa-plus"></i></button>
           </span>
+          </div>
         </div>
       </div>
       <div class="col-md-4">
-        Number of Stats:
-        <div class="input-group mb-3">
-          <span class="input-group-btn">
-            <button class="btn btn-outline-secondary input-group-btn" (click)="n_stats = (n_stats - 1); setStats(n_stats);"><i class="fas fa-minus"></i></button>
-          </span>
-          <label>
-            <input class="form-control" [defaultValue]="6" (keyup)="setStats(n_stats)" ngModel="n_stats" [disabled]="true">
-          </label>
-          <span class="input-group-btn">
+        <div class="row">
+          <div class="col-md-4">
+            <h2>Stats:</h2>
+          </div>
+          <div class="col-md-8 input-group mb-1">
+            <span class="input-group-btn">
+              <button class="btn btn-outline-secondary input-group-btn" (click)="n_stats = (n_stats - 1); setStats(n_stats);"><i class="fas fa-minus"></i></button>
+            </span>
+            <h2 class="padSides">{{n_stats}}</h2>
+            <span class="input-group-btn">
               <button class="btn btn-outline-secondary input-group-btn" (click)="n_stats = (n_stats + 1); setStats(n_stats);"><i class="fas fa-plus"></i></button>
-          </span>
+            </span>
+          </div>
         </div>
       </div>
       <div class="col-md-4">
-        Roll Automatically using 4d6 drop lowest:
-        <button type="button" class="btn btn-dark" (click)="roll()">Roll Stats</button>
+        <div class="row">
+          <div class="col-md-8">
+            <h3>4d6 drop lowest:</h3>
+          </div>
+          <div class="col-md-4">
+            <button type="button" class="btn btn-outline-secondary" (click)="roll()">Roll Stats</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
